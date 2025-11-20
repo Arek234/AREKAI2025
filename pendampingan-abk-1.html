@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pendampingan ABK (Remaja - Dewasa)</title>
+  <meta name="description" content="Panduan dan alat praktis pendampingan ABK (Down Syndrome, Tunarungu, Keterlambatan Berpikir) untuk remaja hingga dewasa." />
+  <style>
+    :root{--bg:#f6f9fc;--card:#ffffff;--muted:#6b7280;--accent:#0ea5a4;--glass:rgba(255,255,255,0.6)}
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background:var(--bg);color:#0f172a}
+    header{background:linear-gradient(90deg,#06b6d4, #0ea5a4);color:white;padding:20px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:56px;height:56px;border-radius:12px;background:rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;font-weight:700}
+    .container{max-width:1100px;margin:20px auto;padding:0 16px}
+    .hero{display:grid;grid-template-columns:1fr 380px;gap:20px;align-items:center}
+    .card{background:var(--card);border-radius:12px;padding:18px;box-shadow:0 6px 18px rgba(16,24,40,0.06)}
+    h1{margin:0 0 8px;font-size:1.6rem}
+    p.lead{margin:0;color:var(--muted)}
+    nav{display:flex;gap:8px;flex-wrap:wrap}
+    button.btn{background:var(--accent);color:white;border:0;padding:8px 12px;border-radius:8px;cursor:pointer}
+    .toolbar{display:flex;gap:8px;align-items:center}
+    .small{font-size:0.9rem;color:var(--muted)}
+
+    /* Tabs & content */
+    .tabs{display:flex;gap:8px;margin:12px 0}
+    .tab{padding:10px 12px;border-radius:10px;border:1px solid transparent;cursor:pointer}
+    .tab[aria-selected="true"]{background:linear-gradient(90deg,#ecfeff,#cffafe);border-color:#99f6e4}
+
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .resource-list{display:flex;flex-direction:column;gap:10px}
+
+    /* Accessibility controls */
+    .access{display:flex;gap:8px;align-items:center}
+    .toggle{padding:6px 8px;border-radius:8px;border:1px solid #e5e7eb;background:white;cursor:pointer}
+
+    footer{margin:40px 0 20px;text-align:center;color:var(--muted);font-size:0.9rem}
+
+    /* Responsive */
+    @media (max-width:900px){.hero{grid-template-columns:1fr;}.grid-3{grid-template-columns:1fr 1fr}.container{padding:0 12px}}
+    @media (max-width:600px){.grid-3{grid-template-columns:1fr}.logo{width:44px;height:44px}}
+
+    /* Accordion */
+    .acc-item{border-radius:10px;overflow:hidden;border:1px solid #eef2f7}
+    .acc-head{padding:12px;display:flex;justify-content:space-between;align-items:center;cursor:pointer}
+    .acc-body{padding:12px;border-top:1px solid #eef2f7;display:none}
+
+    /* Checklist */
+    .checklist{display:flex;flex-direction:column;gap:8px}
+    .check{display:flex;align-items:center;gap:8px}
+
+    /* Quick tips */
+    .tips{display:flex;flex-direction:column;gap:10px}
+
+    /* small helpers */
+    .muted{color:var(--muted)}
+    .kbd{background:#f3f4f6;padding:6px 8px;border-radius:6px;font-family:monospace}
+  </style>
+</head>
+<body>
+  <header role="banner">
+    <div class="brand">
+      <div class="logo" aria-hidden>ABK</div>
+      <div>
+        <div style="font-weight:700">Pendampingan ABK</div>
+        <div class="small">Panduan & alat interaktif untuk remaja → dewasa</div>
+      </div>
+    </div>
+    <div class="toolbar">
+      <div class="access small" role="navigation" aria-label="Toolbar aksesibilitas">
+        <button class="toggle" id="increaseFont" title="Perbesar font">A+</button>
+        <button class="toggle" id="decreaseFont" title="Perkecil font">A-</button>
+        <button class="toggle" id="dyslexiaToggle" title="Toggle font dyslexia">Dys</button>
+        <button class="toggle" id="contrastToggle" title="Toggle kontras">Kontras</button>
+        <button class="toggle" id="readAloud" title="Baca halaman">Baca</button>
+      </div>
+      <nav aria-label="Navigasi utama">
+        <button class="btn" id="downloadBtn">Unduh Halaman (.html)</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container" role="main">
+    <section class="hero card" aria-labelledby="heroTitle">
+      <div>
+        <h1 id="heroTitle">Pendampingan ABK — Remaja & Dewasa</h1>
+        <p class="lead">Sumber praktis, mudah digunakan, dan dapat disesuaikan untuk tiga fokus: <strong>Down Syndrome</strong>, <strong>Tunarungu</strong>, dan <strong>Keterlambatan Berpikir</strong>. Cocok untuk pendamping, keluarga, dan guru.</p>
+
+        <div style="margin-top:12px" class="small muted">Fitur utama: materi praktis, checklist, aktivitas kemandirian, video & tanda bahasa sederhana.</div>
+
+        <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap">
+          <button class="btn" id="startTour">Mulai Tour</button>
+          <button class="btn" id="openResources" style="background:#2563eb">Lihat Sumber</button>
+        </div>
+
+        <div style="margin-top:16px" class="card" aria-labelledby="toolHeadline">
+          <div id="toolHeadline" style="font-weight:700">Alat Interaktif</div>
+          <div class="grid-3" style="margin-top:10px">
+            <div>
+              <strong>Checklist Kemandirian</strong>
+              <div class="small muted">Alat untuk melatih kegiatan harian</div>
+            </div>
+            <div>
+              <strong>Program Latihan</strong>
+              <div class="small muted">Modul latihan singkat 7 hari</div>
+            </div>
+            <div>
+              <strong>Bank Video & Simbol</strong>
+              <div class="small muted">Visual yang mudah ditiru</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="card" aria-label="Panel cepat">
+        <div style="font-weight:700">Profil Singkat</div>
+        <div class="small muted" style="margin-top:8px">Pilih jenis ABK untuk melihat materi dan panduan</div>
+
+        <div class="tabs" role="tablist" aria-label="Jenis ABK">
+          <button class="tab" role="tab" aria-selected="true" data-target="down">Down Syndrome</button>
+          <button class="tab" role="tab" aria-selected="false" data-target="tunarungu">Tunarungu</button>
+          <button class="tab" role="tab" aria-selected="false" data-target="kb">Keterlambatan Berpikir</button>
+        </div>
+
+        <div id="tabContent">
+          <!-- Content injected by JS -->
+        </div>
+      </aside>
+    </section>
+
+    <section style="margin-top:20px" class="card" id="resources">
+      <h2 style="margin-top:0">Sumber & Aktivitas</h2>
+      <div style="display:flex;gap:16px;flex-wrap:wrap">
+        <div style="flex:1 1 420px">
+          <div class="resource-list">
+            <div class="card">
+              <strong>Panduan Praktis</strong>
+              <div class="small muted">Panduan harian, komunikasi, dan adaptasi lingkungan.</div>
+              <div style="margin-top:8px"><button class="btn" onclick="openModal('panduan')">Buka</button></div>
+            </div>
+
+            <div class="card">
+              <strong>Video: Teknik Komunikasi</strong>
+              <div class="small muted">Koleksi video pendek (tanda, visual, rutinitas)</div>
+              <div style="margin-top:8px"><button class="btn" onclick="openModal('video')">Tonton</button></div>
+            </div>
+
+            <div class="card">
+              <strong>Template Rencana Harian</strong>
+              <div class="small muted">Cetak & pakai untuk rutinitas</div>
+              <div style="margin-top:8px"><button class="btn" onclick="downloadTemplate()">Unduh</button></div>
+            </div>
+          </div>
+        </div>
+
+        <div style="flex:0 0 320px">
+          <div class="card">
+            <strong>Checklist Kemandirian (Contoh)</strong>
+            <div class="small muted">Centang saat target tercapai</div>
+            <div class="checklist" style="margin-top:8px">
+              <label class="check"><input type="checkbox" /> Memakai pakaian sendiri</label>
+              <label class="check"><input type="checkbox" /> Makan dengan alat</label>
+              <label class="check"><input type="checkbox" /> Mengikuti instruksi 2 langkah</label>
+              <label class="check"><input type="checkbox" /> Menyimpan barang ke tempatnya</label>
+            </div>
+          </div>
+
+          <div class="card" style="margin-top:12px">
+            <strong>Kontak Darurat & Layanan</strong>
+            <div class="small muted">List layanan rehabilitasi, SLB, dan komunitas lokal</div>
+            <ul class="small muted" style="margin-top:8px;padding-left:18px">
+              <li>Nomor Layanan Konsultasi: (contoh) 0812-xxxx-xxxx</li>
+              <li>Forum Pendamping Lokal</li>
+              <li>Grup Orang Tua & Pengasuh</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="margin-top:20px" class="card" id="activities">
+      <h2 style="margin-top:0">Aktivitas & Latihan</h2>
+      <div class="tips">
+        <div class="card">
+          <strong>Latihan 5 Menit - Kemandirian</strong>
+          <div class="small muted">Latihan singkat yang dapat diulang setiap hari.</div>
+          <ol style="margin-top:8px">
+            <li>Ajarkan satu langkah memakai kaos, beri panduan visual.</li>
+            <li>Latihan memegang sendok dengan stabil (3 kali sehari).</li>
+            <li>Permainan memori sederhana dengan 3 kartu.</li>
+          </ol>
+        </div>
+
+        <div class="card">
+          <strong>Aktivitas Sensori Ringan</strong>
+          <div class="small muted">Untuk menenangkan dan meningkatkan fokus.</div>
+          <div style="margin-top:8px">Bola karet, bahan bertekstur, dan musik tenang selama 10 menit.</div>
+        </div>
+      </div>
+    </section>
+
+    <section style="margin-top:20px" class="card" id="contact">
+      <h2 style="margin-top:0">Bantuan & Kontak</h2>
+      <form id="contactForm" onsubmit="event.preventDefault();submitForm()" aria-label="Form kontak">
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <input aria-label="Nama" id="name" placeholder="Nama" style="flex:1;padding:10px;border-radius:8px;border:1px solid #e6eef6" />
+          <input aria-label="Email" id="email" placeholder="Email (opsional)" style="flex:1;padding:10px;border-radius:8px;border:1px solid #e6eef6" />
+        </div>
+        <textarea aria-label="Pesan" id="message" placeholder="Tulis pesan / permintaan bantuan" style="width:100%;margin-top:10px;padding:10px;border-radius:8px;border:1px solid #e6eef6"></textarea>
+        <div style="margin-top:8px"><button class="btn" type="submit">Kirim</button></div>
+      </form>
+    </section>
+
+    <footer>
+      Dibuat dengan ♥ untuk pendampingan ABK • Template ini bebas dikembangkan.
+    </footer>
+  </main>
+
+  <!-- Modal area -->
+  <div id="modal" role="dialog" aria-hidden="true" style="position:fixed;inset:0;display:none;align-items:center;justify-content:center;padding:20px">
+    <div style="width:min(880px,98%);max-height:90vh;overflow:auto" class="card" id="modalContent">
+      <button style="float:right" aria-label="Tutup" onclick="closeModal()">✕</button>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <script>
+    // Initial tab contents (Bahasa Indonesia)
+    const tabData = {
+      down: {
+        title: 'Down Syndrome',
+        desc: 'Fokus pada dukungan kognitif ringan-sedang, keterampilan sosial, dan kesehatan. Saran: rutinitas visual, stimulasi motorik halus, dan dukungan nutrisi & medis.',
+        tips: ['Gunakan kalender visual', 'Pecah instruksi menjadi 1 langkah', 'Latihan berbicara sederhana & bermain bersama']
+      },
+      tunarungu: {
+        title: 'Tunarungu',
+        desc: 'Berfokus pada komunikasi alternatif (bahasa isyarat, visual) dan lingkungan pendukung: penerangan, panduan visual, dan latihan membaca bibir bila diperlukan.',
+        tips: ['Pelajari tanda dasar', 'Gunakan gambar & simbol', 'Pastikan perhatian sebelum berkomunikasi']
+      },
+      kb: {
+        title: 'Keterlambatan Berpikir',
+        desc: 'Strategi pengajaran yang mudah dipahami: pengulangan, penguatan positif, dan modifikasi tugas agar dapat dicapai secara bertahap.',
+        tips: ['Pecah tugas menjadi langkah kecil', 'Gunakan pujian spesifik', 'Latihan keterampilan hidup sehari-hari']
+      }
+    };
+
+    // render default tab
+    const tabContent = document.getElementById('tabContent');
+    function renderTab(key){
+      const d = tabData[key];
+      tabContent.innerHTML = `
+        <div style="margin-top:8px">
+          <div style="font-weight:700">${d.title}</div>
+          <div class="small muted" style="margin-top:6px">${d.desc}</div>
+          <div style="margin-top:8px"><strong>Tips Praktis:</strong><ul class="small muted">${d.tips.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+          <div style="margin-top:10px"><button class='btn' onclick="openModal('${key}-detail')">Lihat Detail</button></div>
+        </div>
+      `;
+    }
+    renderTab('down');
+
+    document.querySelectorAll('.tab').forEach(t=>{
+      t.addEventListener('click', ()=>{
+        document.querySelectorAll('.tab').forEach(x=>x.setAttribute('aria-selected','false'));
+        t.setAttribute('aria-selected','true');
+        renderTab(t.dataset.target);
+      });
+    });
+
+    // Modal handler
+    function openModal(id){
+      const modal = document.getElementById('modal');
+      const body = document.getElementById('modalBody');
+      modal.style.display='flex';
+      modal.setAttribute('aria-hidden','false');
+      if(id==='video'){
+        body.innerHTML = `<h3>Video: Teknik Komunikasi</h3><p class='small muted'>Contoh video pendukung (placeholder).</p><div style='margin-top:8px'><iframe width='100%' height='320' src='https://www.youtube.com/embed/5qap5aO4i9A' title='Video Contoh' frameborder='0' allowfullscreen></iframe></div>`;
+      } else if(id==='panduan'){
+        body.innerHTML = `<h3>Panduan Praktis</h3><p class='small muted'>Panduan singkat per topik.</p><h4>Down Syndrome</h4><p class='small muted'>Rutinitas, stimulasi bicara, dan adaptasi sekolah/pekerjaan.</p><h4>Tunarungu</h4><p class='small muted'>Bahasa isyarat dasar, komunikasi visual, dan akses layanan.</p><h4>Keterlambatan Berpikir</h4><p class='small muted'>Modifikasi tugas, latihan kemandirian, & dukungan sosial.</p>`;
+      } else if(id==='down-detail'){
+        body.innerHTML = `<h3>Detail: Down Syndrome</h3><ul class='small muted'><li>Rencana pembelajaran individual</li><li>Terapi wicara & occupational therapy</li><li>Adaptasi tempat kerja yang suportif</li></ul>`;
+      } else if(id==='tunarungu-detail'){
+        body.innerHTML = `<h3>Detail: Tunarungu</h3><ul class='small muted'><li>Dasar bahasa isyarat</li><li>Strategi komunikasi visual</li><li>Teknologi bantu (loop, amplification)</li></ul>`;
+      } else if(id==='kb-detail'){
+        body.innerHTML = `<h3>Detail: Keterlambatan Berpikir</h3><ul class='small muted'><li>Pembelajaran berbasis tugas</li><li>Penguatan positif & adaptasi</li><li>Rencana pekerjaan ringan</li></ul>`;
+      } else { body.innerHTML = '<p class="small muted">Konten belum tersedia.</p>' }
+    }
+    function closeModal(){
+      const modal = document.getElementById('modal');
+      modal.style.display='none';
+      modal.setAttribute('aria-hidden','true');
+    }
+
+    // Contact form
+    function submitForm(){
+      const name = document.getElementById('name').value || 'Anonim';
+      const message = document.getElementById('message').value || '(kosong)';
+      alert('Terima kasih, '+name+"! Pesan Anda terkirim. (Demo)");
+      document.getElementById('contactForm').reset();
+    }
+
+    // Accessibility toolbar
+    let baseSize = 16;
+    document.getElementById('increaseFont').addEventListener('click', ()=>{ baseSize += 1; document.documentElement.style.fontSize = baseSize+'px'; });
+    document.getElementById('decreaseFont').addEventListener('click', ()=>{ baseSize = Math.max(12, baseSize-1); document.documentElement.style.fontSize = baseSize+'px'; });
+
+    document.getElementById('dyslexiaToggle').addEventListener('click', ()=>{
+      const curr = document.documentElement.style.fontFamily;
+      if(curr.includes('OpenDyslexic')){
+        document.documentElement.style.fontFamily = 'Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial';
+      } else {
+        document.documentElement.style.fontFamily = 'OpenDyslexic, Inter, system-ui, -apple-system, "Segoe UI", Roboto';
+      }
+    });
+
+    document.getElementById('contrastToggle').addEventListener('click', ()=>{
+      if(document.body.style.backgroundColor==='black'){
+        document.body.style.backgroundColor=''; document.body.style.color='';
+      } else { document.body.style.backgroundColor='black'; document.body.style.color='#fff'; }
+    });
+
+    // Read aloud
+    document.getElementById('readAloud').addEventListener('click', ()=>{
+      const s = new SpeechSynthesisUtterance(document.querySelector('main').innerText);
+      s.lang='id-ID'; window.speechSynthesis.cancel(); window.speechSynthesis.speak(s);
+    });
+
+    // Download HTML file of current page
+    document.getElementById('downloadBtn').addEventListener('click', ()=>{
+      const html = '<!doctype html>\\n' + document.documentElement.outerHTML;
+      const blob = new Blob([html], {type: 'text/html'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href=url; a.download='pendampingan-abk.html'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+    });
+
+    // Small helpers
+    document.getElementById('startTour').addEventListener('click', ()=>{
+      alert('Tour singkat:\\n1) Gunakan toolbar untuk aksesibilitas\\n2) Pilih jenis ABK di tab kanan\\n3) Buka Sumber & Aktivitas untuk materi');
+    });
+    document.getElementById('openResources').addEventListener('click', ()=>{document.getElementById('resources').scrollIntoView({behavior:'smooth'})});
+
+    function downloadTemplate(){
+      const csv = 'Hari, Kegiatan, Selesai\\nSenin, Sarapan, \\n';
+      const blob = new Blob([csv], {type:'text/csv'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href=url; a.download='rencana-harian-template.csv'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+    }
+
+    // simple keyboard accessibility for accordion (if you want to extend)
+    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeModal(); });
+
+  </script>
+</body>
+</html>
